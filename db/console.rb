@@ -29,7 +29,7 @@ require_relative('../models/album')
 # sean_paul = Artist.by_name('Sean Paul')
 # p sean_paul.albums()
 
-bad = Album.by_title('Bad')
+bad = Album.by_id(5)
 p bad.artist()
 
 binding.pry
