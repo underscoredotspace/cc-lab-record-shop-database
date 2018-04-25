@@ -34,4 +34,10 @@ class Artist
     return Artist.new(artist)
   end
 
+  def self.by_id(artist_id)
+    sql = "SELECT * FROM artists WHERE id = $1"
+    values = [artist_id]
+    artist = SqlRunner.run(sql, values).first
+    return Artist.new(artist)
+  end
 end
