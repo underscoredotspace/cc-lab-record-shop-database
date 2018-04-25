@@ -2,6 +2,7 @@ require('pg')
 require_relative('../db/db_runner')
 
 class Artist
+  attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
