@@ -3,7 +3,8 @@ require_relative('../db/db_runner')
 require_relative('album')
 
 class Artist
-  attr_reader :id
+  attr_accessor(:name)
+  attr_reader(:id)
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -17,8 +18,14 @@ class Artist
     @id = result['id'].to_i
   end
 
+  def update()
+    sql = "UPDATE artists SET (name) = ($1) WHERE id = $2"
+    values = [@name, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def albums()
-    return Album.by_artist_id(@id)
+    Album.by_artist_id(@id)
   end
 
   def self.all()
