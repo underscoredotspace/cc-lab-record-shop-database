@@ -24,6 +24,14 @@ class Artist
     SqlRunner.run(sql, values)
   end
 
+  def delete()
+    self.albums().each { |album| album.delete() }
+
+    sql = "DELETE FROM artists WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
   def albums()
     Album.by_artist_id(@id)
   end
